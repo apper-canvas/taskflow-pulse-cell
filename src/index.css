@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-sm border border-white/20 shadow-soft;
+  }
+  
+  .neu-card {
+    @apply bg-surface-100 shadow-neu-light border border-surface-200;
+  }
+  
+  .neu-card-dark {
+    @apply bg-surface-800 shadow-neu-dark border border-surface-700;
+  }
+  
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 shadow-card hover:shadow-glow;
+  }
+  
+  .btn-secondary {
+    @apply bg-surface-100 hover:bg-surface-200 text-surface-800 border border-surface-300 px-6 py-3 rounded-xl font-medium transition-all duration-200;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-surface-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200;
+  }
+  
+  .task-card {
+    @apply bg-white/70 backdrop-blur-sm border border-surface-200 rounded-2xl p-5 transition-all duration-300 hover:shadow-card hover:bg-white/80;
+  }
+  
+  .task-card-completed {
+    @apply bg-surface-100/50 border-surface-300 opacity-75;
+  }
+  
+  .priority-high {
+    @apply border-l-4 border-red-400;
+  }
+  
+  .priority-medium {
+    @apply border-l-4 border-amber-400;
+  }
+  
+  .priority-low {
+    @apply border-l-4 border-green-400;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-surface-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-surface-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-surface-400;
+}
+
+/* Toast customization */
+.Toastify__toast {
+  @apply rounded-xl font-medium;
+}
+
+.Toastify__toast--success {
+  @apply bg-green-50 text-green-800 border border-green-200;
+}
+
+.Toastify__toast--error {
+  @apply bg-red-50 text-red-800 border border-red-200;
+}
+
+.Toastify__toast--warning {
+  @apply bg-amber-50 text-amber-800 border border-amber-200;
+}
