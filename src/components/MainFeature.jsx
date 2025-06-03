@@ -402,7 +402,7 @@ const MainFeature = () => {
                     </div>
                   </div>
                   
-                  <div className="flex items-center space-x-2 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
+<div className="flex items-center space-x-2 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
                     <motion.button
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}

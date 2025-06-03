@@ -5,7 +5,24 @@ import ApperIcon from '../components/ApperIcon'
 
 const Home = () => {
   const [darkMode, setDarkMode] = useState(false)
+  const [user, setUser] = useState(null)
 
+  const logout = () => {
+    setUser(null)
+    // Add any additional logout logic here
+  }
+
+  useEffect(() => {
+    // Check for existing user session
+    const savedUser = localStorage.getItem('user')
+    if (savedUser) {
+      try {
+        setUser(JSON.parse(savedUser))
+      } catch (error) {
+        console.error('Error parsing saved user:', error)
+      }
+    }
+  }, [])
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark')
@@ -71,19 +88,36 @@ const Home = () => {
                   Smart Task Management
                 </p>
               </div>
-            </motion.div>
+</motion.div>
 
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-3 rounded-xl glass-card hover:shadow-card transition-all duration-200"
-            >
-              <ApperIcon 
-                name={darkMode ? "Sun" : "Moon"} 
-                className="w-5 h-5 sm:w-6 sm:h-6 text-surface-700" 
-              />
-            </motion.button>
+            <div className="flex items-center space-x-3">
+              {user && (
+                <div className="hidden sm:flex items-center space-x-3">
+                  <span className="text-sm text-surface-600">
+                    Welcome, {user.firstName || user.name || 'User'}
+                  </span>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={logout}
+                    className="p-2 rounded-xl glass-card hover:shadow-card transition-all duration-200 text-surface-600 hover:text-red-600"
+                  >
+                    <ApperIcon name="LogOut" className="w-4 h-4" />
+                  </motion.button>
+                </div>
+              )}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setDarkMode(!darkMode)}
+                className="p-3 rounded-xl glass-card hover:shadow-card transition-all duration-200"
+              >
+                <ApperIcon 
+                  name={darkMode ? "Sun" : "Moon"} 
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-surface-700" 
+                />
+              </motion.button>
+            </div>
           </div>
         </div>
       </motion.header>
